@@ -40,6 +40,8 @@ public class Blink extends Task {
     private int green;
     private int blue;
     
+    private boolean failIfNoBlink = false;
+    
     public Blink() {
                 
     }
@@ -54,7 +56,8 @@ public class Blink extends Task {
         Blink1 blink1 = new Blink1();
         int rc = blink1.open();
         if( rc != 0 ) { 
-          System.err.println("uh oh, no Blink1 device found");
+          log("uh oh, no Blink1 device found");
+          if(failIfNoBlink) throw new BuildException("No Blink1 device found.");
         }
         Color c = null;
         if(color != null && color.length() > 0) {
@@ -86,5 +89,12 @@ public class Blink extends Task {
     public void setBlue(int blue) {
         this.blue = blue;
     }
-    
+ 
+    /**
+     * If true, fail build if no blink(1) device found.
+     * Defaults to false.
+     */
+    public void setFailIfNoBlink(boolean failIfNoBlink) {
+        this.failIfNoBlink = failIfNoBlink;
+    }
 }
