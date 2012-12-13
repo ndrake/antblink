@@ -58,7 +58,7 @@ public class Blink extends Task {
         }
         Color c = null;
         if(color != null && color.length() > 0) {
-            c = new Color( 255,0,0 );
+            c = Color.decode(color);
         } else {
             c = new Color( red, green, blue); 
         }
@@ -67,6 +67,10 @@ public class Blink extends Task {
         blink1.close();
     }
 
+    /**
+     * Specify hex color. If specified this attribute takes priority over separate RGB components.
+     * i.e 0xff0000
+     */
     public void setColor(String color) {
         this.color = color;
     }
