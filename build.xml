@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project name="antblink" default="compile" basedir=".">
+	<property name="src" value="./src"/>
+	<property name="build" value="./build"/>
+	<property name="dist" value="./dist"/>
+	<property name="lib" value="./lib"/>
+	<property name="compile.debug" value="true"/>
+	
+	<property name="version.num" value="0.1"/>
+
+	<path id="compile.classpath">
+		<fileset dir="lib">
+		    <include name="*.jar"/>
+		</fileset>	    
+	</path>
+
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" 
+               destdir="${build}"
+               debug="${compile.debug}"
+               source="1.5">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+
+    <target name="run-test" depends="compile">
+        <java classname="net.slimeslurp.antblink.Blink">
+            <classpath refid="compile.classpath"/>
+            <classpath>
+                <pathelement path="build"/>
+            </classpath>
+        </java>
+    </target>
+
+	<target name="init">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build}/lib"/>		
+		<mkdir dir="${dist}"/>
+	</target>
+
+	<target name="dist" depends="compile">
+		
+		<jar destfile="${dist}/antblink.jar" basedir="build">
+		</jar>
+		
+  	</target>
+	
+	<target name="clean" description="Removes previous build">
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+
+    <target name="test" description="Test the blink task">
+        <path id="cp.path">
+              <fileset dir="dist" includes="*.jar"/>
+              <fileset dir="${lib}" includes="*.jar"/>              
+              <pathelement path="${lib}" />              
+        </path>
+        <taskdef name="blink" classname="net.slimeslurp.antblink.Blink" classpathref="cp.path"/>        
+        <blink red="55" green="100" blue="20"/>
+    </target>
+</project>
