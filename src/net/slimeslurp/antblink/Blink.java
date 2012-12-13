@@ -1,5 +1,5 @@
 /*
- *  Copyright 2007 Nate Drake
+ *  Copyright 2012 Nate Drake
  * 
  *  Licensed to the Apache Software Foundation (ASF) under one or more
  *  contributor license agreements.  See the NOTICE file distributed with
