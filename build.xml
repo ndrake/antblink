@@ -60,6 +60,6 @@
         </path>
         <taskdef name="blink" classname="net.slimeslurp.antblink.Blink" classpathref="cp.path"/>        
         <!-- <blink red="55" green="100" blue="20"/> -->
-        <blink color="0x00ffff"/>
+        <blink color="0x00ffff"/>        
     </target>
 </project>
