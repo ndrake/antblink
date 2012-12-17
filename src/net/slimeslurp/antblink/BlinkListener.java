@@ -36,8 +36,7 @@ public class BlinkListener implements BuildListener {
     private Blink1 blink1;
     
     public BlinkListener() {
-
-
+        System.setProperty("java.awt.headless", "true");
     }
 
     /**
